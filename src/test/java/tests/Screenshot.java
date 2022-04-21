@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import sun.security.krb5.internal.crypto.Des;
@@ -28,13 +29,13 @@ public class Screenshot extends DriverManager {
 
     public void screenshotV4FirefoxTest() throws Exception {
         driver.close();
-        FirefoxDriver firefoxDriver = new FirefoxDriver();
-        firefoxDriver.get(baseUrl);
+        ChromeDriver chromeDriver = new ChromeDriver();
+        chromeDriver.get(baseUrl);
         Thread.sleep(2000);
-        File SrcFile= ((FirefoxDriver) firefoxDriver).getFullPageScreenshotAs(OutputType.FILE);
-        File DestFile = new File("src/test/resources/screenshots/testv4-firefox.png");
+        File SrcFile= ((ChromeDriver) chromeDriver).getScreenshotAs(OutputType.FILE);
+        File DestFile = new File("src/test/resources/screenshots/testv4-chrome.png");
         FileUtils.copyFile(SrcFile, DestFile);
-        firefoxDriver.quit();
+        chromeDriver.quit();
     }
 
     @Test(groups = {"version4"})
